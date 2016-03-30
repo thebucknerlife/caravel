@@ -590,6 +590,7 @@ class BigNumberViz(BaseViz):
             'compare_suffix': form_data.get('compare_suffix', ''),
         }
 
+
 class BigNumberTotalViz(BaseViz):
 
     """Put emphasis on a single metric with this big number viz"""
@@ -601,8 +602,6 @@ class BigNumberTotalViz(BaseViz):
         'label': None,
         'fields': (
             'metric',
-            'compare_lag',
-            'compare_suffix',
             'subheader',
             'y_axis_format',
         )
@@ -631,12 +630,8 @@ class BigNumberTotalViz(BaseViz):
         form_data = self.form_data
         df = self.get_df()
         df = df.sort(columns=df.columns[0])
-        compare_lag = form_data.get("compare_lag", "")
-        compare_lag = int(compare_lag) if compare_lag and compare_lag.isdigit() else 0
         return {
             'data': df.values.tolist(),
-            'compare_lag': compare_lag,
-            'compare_suffix': form_data.get('compare_suffix', ''),
             'subheader': form_data.get('subheader', ''),
         }
 
